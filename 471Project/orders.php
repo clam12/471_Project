@@ -7,16 +7,11 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Inventory System</title>
+        <title></title>
     </head>
     <body>
-        <?php    
+        <?php
+        // put your code here
         ?>
-        Welcome <?php echo $_POST["name"]; ?><br>
-        
-        <a href="inventory.php">Inventory</a> <br>
-        <a href="orders.php">Orders</a> <br>
-        <a href="index.php">Log out</a> <br>
-        
     </body>
 </html>
