@@ -7,14 +7,14 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>471project</title>
+        <title>Login - Inventory System</title>
     </head>
+    <h1>Inventory System</h1>
     <body>
-        Welcome to Inventory System
         <form action="welcome.php" method="post">
             Employee ID: <input type="text" name="name"><br>
             Password: <input type ="text" name="password"><br>
-            <input type="submit">
+            <input type="submit" value="Login">
         </form>
         <?php
         // put your code here

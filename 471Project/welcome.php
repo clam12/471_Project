@@ -9,11 +9,10 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Inventory System</title>
     </head>
+    <h1> Logged in as: <?php echo $_POST["name"]; ?></h1>
     <body>
         <?php    
         ?>
-        Welcome <?php echo $_POST["name"]; ?><br>
-        
         <a href="inventory.php">Inventory</a> <br>
         <a href="orders.php">Orders</a> <br>
         <a href="index.php">Log out</a> <br>

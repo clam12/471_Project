@@ -7,8 +7,9 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Inventory</title>
     </head>
+    <h1> Inventory </h1>
     <body>
         <?php
         // Create connection
@@ -41,8 +42,11 @@ and open the template in the editor.
         ?>
         <br>
         <form action="inventory_search.php" method="post">
-            Search keyword: <input type="text" name="keyword"><br>
-            <input type="submit">
+            <input type="text" name="keyword">
+            <input type="submit" value="Search">
         </form>
+        <br>
+        <a href="inventory_insert.php">Insert new item</a> <br>
+        <a href="welcome.php">Back</a> <br>
     </body>
 </html>
