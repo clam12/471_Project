@@ -23,29 +23,29 @@ and open the template in the editor.
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $firstPart = $_POST["firstPart"];
-        $secondPart = $_POST["secondPart"];
-        $component = $_POST["compare_by"];
+        $component = $_POST["filter_by"];
 
         if ($component == "CPU") {
-            $sql2 = "SELECT part.part_id, part.part_name, part.company_name, part.price, part.stock, part.location, cpu.clock_speed, cpu.cores, cpu.threads FROM part INNER JOIN cpu ON "
-                    . "(part.part_id = $firstPart OR part.part_id = $secondPart) AND part.part_id = cpu.part_id";
+            $sql = "SELECT * FROM `part` NATURAL JOIN `cpu`";
         } else if ($component == "GPU") {
-            $sql2 = "SELECT part.part_id, part.part_name, part.company_name, part.price, part.stock, part.location, gpu.vram, gpu.clock_speed FROM part INNER JOIN gpu ON "
-                    . "(part.part_id = $firstPart OR part.part_id = $secondPart) AND part.part_id = gpu.part_id ";
+            $sql = "SELECT * FROM `part` NATURAL JOIN `gpu`";
         } else if ($component == "HDD") {
-           $sql2 = "SELECT part.part_id, part.part_name, part.company_name, part.price, part.stock, part.location, hdd.capacity, hdd.rpm FROM part INNER JOIN hdd ON "
-                    . "(part.part_id = $firstPart OR part.part_id = $secondPart) AND part.part_id = hdd.part_id ";
+            $sql = "SELECT * FROM `part` NATURAL JOIN `hdd`";
         } else if ($component == "PSU") {
-            $sql2 = "SELECT part.part_id, part.part_name, part.company_name, part.price, part.stock, part.location, psu.wattage, psu.modularity, psu.rating FROM part INNER JOIN psu ON "
-                    . "(part.part_id = $firstPart OR part.part_id = $secondPart) AND part.part_id = psu.part_id ";
-        } else {
-            //RAM
-            $sql2 = "SELECT part.part_id, part.part_name, part.company_name, part.price, part.stock, part.location, ram.size, ram.speed, ram.architecture FROM part INNER JOIN ram ON "
-                    . "(part.part_id = $firstPart OR part.part_id = $secondPart) AND part.part_id = ram.part_id";
+            $sql = "SELECT * FROM `part` NATURAL JOIN `psu`";
+        } else if ($component == "RAM") {
+            $sql = "SELECT * FROM `part` NATURAL JOIN `ram`";    
+        } else if ($component == "Other") {
+            $sql = "SELECT *
+                    FROM part
+                    WHERE part_id NOT IN (SELECT part_id FROM cpu)
+                    AND part_id NOT IN (SELECT part_id FROM gpu)
+                    AND part_id NOT IN (SELECT part_id FROM hdd)
+                    AND part_id NOT IN (SELECT part_id FROM ram)
+                    AND part_id NOT IN (SELECT part_id FROM psu)";         
         }
-        $result2 = $conn->query($sql2);
-        if ($result2->num_rows > 0) {
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
             echo "<table><tr><th>part_id</th><th>part_name</th><th>company_name</th><th>price</th><th>stock</th><th>location</th>";
             if ($component == "CPU") {
                 echo "<th>clock speed</th><th>cores</th><th>threads</th></tr>";
@@ -55,12 +55,12 @@ and open the template in the editor.
                 echo "<th>capacity</th><th>rpm</th></tr>";
             } else if ($component == "PSU") {
                 echo "<th>wattage</th><th>modularity</th><th>rating</th></tr>";
-            } else {
+            } else if ($component == "RAM"){
                 echo "<th>size</th><th>speed</th><th>architecture</th></tr>";
             }
-            
+                  
             // output data of each row
-            while ($row = $result2->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 echo "<tr><td>" . $row["part_id"] . "</td><td>" . $row["part_name"] . "</td><td>" . $row["company_name"] . "</td><td>" . $row["price"] . "</td><td>" . $row["stock"] . "</td><td>" . $row["location"] . "</td>";
                 if ($component == "CPU") {
                     echo "<td>" . $row["clock_speed"] . "</td><td>" . $row["cores"] . "</td><td>" . $row["threads"] . "</td></tr>";
@@ -70,7 +70,7 @@ and open the template in the editor.
                     echo "<td>" . $row["capacity"] . "</td><td>" . $row["rpm"]."</td></tr>";
                 } else if ($component == "PSU") {
                     echo "<td>" . $row["wattage"] . "</td><td>" . $row["modularity"]."</td><td>" . $row["rating"] . "</td></tr>";
-                } else {
+                } else if ($component == "RAM") {
                     echo "<td>" . $row["size"] . "</td><td>" . $row["speed"]."</td><td>" . $row["architecture"] . "</td></tr>";
                 }
             }

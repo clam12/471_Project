@@ -104,8 +104,8 @@ and open the template in the editor.
         $conn->close();
         }
         
-        echo "<br> Redirecting you back to the inventory page after 5 seconds.";
-        header('Refresh: 5; url=inventory.php');
+        //echo "<br> Redirecting you back to the inventory page after 5 seconds.";
+        //header('Refresh: 5; url=inventory.php');
         ?>
 
         <br> <a href="inventory.php">Back to Inventory</a> <br>

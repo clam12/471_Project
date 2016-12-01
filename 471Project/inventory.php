@@ -40,21 +40,50 @@ and open the template in the editor.
         $conn->close();
         ?>
         <br>
+        
+        <h3>Search</h3>
         <form action="inventory_search.php" method="post">
             <input type="text" name="keyword">
             <input type="submit" value="Search">
         </form>
+        
+        <h3>Filter</h3>        
+        <form action="inventory_filter.php" method="post"> 
+            <select name="filter_by">
+                <option value="CPU">CPU</option>
+                <option value="GPU">GPU</option>
+                <option value="HDD">HDD</option>
+                <option value="PSU">PSU</option>
+                <option value="RAM">RAM</option>
+                <option>Other</option>
+            </select>
+            <input type="submit" value="Filter">
+        </form>
+        
+        <h3>Compare</h3>
         <form action = "inventory_compare.php" method = "post">
             First part_id: <input type = "text" name = "firstPart">
             Second part_id: <input type = "text" name = "secondPart">
-            | CPU<input type="radio" name="radio" value="CPU">
-            | GPU<input type="radio" name="radio" value="GPU">
-            | HDD<input type="radio" name="radio" value="HDD">
-            | PSU<input type="radio" name="radio" value="PSU">
-            | RAM<input type="radio" name="radio" value="RAM">       
-            <input type = "submit" value = Compare>
+            <select name="compare_by">
+                <option value="CPU">CPU</option>
+                <option value="GPU">GPU</option>
+                <option value="HDD">HDD</option>
+                <option value="PSU">PSU</option>
+                <option value="RAM">RAM</option>
+            </select>     
+            <input type = "submit" value ="Compare">
         </form>
-        <a href="inventory_insert.php">Insert new item</a> <br>
-        <a href="welcome.php">Back</a> <br>
+        
+        <h3>Modify</h3>        
+        <form action="inventory_modify.php" method="post">
+            Part_id: <input type="text" name="part_id">
+            <input type="submit" value="Modify">
+        </form>
+        
+        <h3>Insert</h3>       
+        <form action="inventory_insert.php" method="post">
+            <input type="submit" value="Insert New Part">
+        </form> 
+        <br> <a href="welcome.php">Back</a> <br>
     </body>
 </html>

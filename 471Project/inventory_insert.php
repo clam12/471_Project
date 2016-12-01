@@ -28,12 +28,9 @@ and open the template in the editor.
         
         </style>
     </head>
-    <h1>Add New Item</h1>   
+    <h1>Insert New Part</h1>   
     <body>
-        
-
-        
-        
+     
         <?php
         // Create connection
         $servername="localhost";
@@ -127,8 +124,7 @@ and open the template in the editor.
         $conn->close();
         
         ?>
-        
-         
+ 
         <br> <a href="inventory.php">Back</a> <br>
     </body>
 </html>
