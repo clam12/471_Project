@@ -47,11 +47,11 @@ and open the template in the editor.
         <form action = "inventory_compare.php" method = "post">
             First part_id: <input type = "text" name = "firstPart">
             Second part_id: <input type = "text" name = "secondPart">
-            CPU<input type="radio" name="radio" value="CPU">
-            GPU<input type="radio" name="radio" value="GPU">
-            HDD<input type="radio" name="radio" value="HDD">
-            PSU<input type="radio" name="radio" value="PSU">
-            RAM<input type="radio" name="radio" value="RAM">       
+            | CPU<input type="radio" name="radio" value="CPU">
+            | GPU<input type="radio" name="radio" value="GPU">
+            | HDD<input type="radio" name="radio" value="HDD">
+            | PSU<input type="radio" name="radio" value="PSU">
+            | RAM<input type="radio" name="radio" value="RAM">       
             <input type = "submit" value = Compare>
         </form>
         <a href="inventory_insert.php">Insert new item</a> <br>

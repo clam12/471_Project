@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         <form action="welcome.php" method="post">
             Employee ID: <input type="text" name="name"><br>
-            Password: <input type ="text" name="password"><br>
+            Password: <input type ="password" name="password"><br>
             <input type="submit" value="Login">
         </form>
         <?php

@@ -7,12 +7,10 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Submit Insert Part</title>
     </head>
     <body>
-        
-        
-        
+
         <?php
         // Create connection
         $servername="localhost";
@@ -33,9 +31,6 @@ and open the template in the editor.
         $loca = $_POST['location'];
         $type = $_POST['part_type'];
         
-
-        echo $type;
-        
         if (empty($name) || empty($price) || empty($stock) || empty($loca)) {
             echo "Error: One or more of the required fields are empty";
         } else {          
@@ -43,46 +38,76 @@ and open the template in the editor.
 
             if ($conn->query($sql) === TRUE) {
                 echo "New part created successfully";
+                if (!empty($type)) {
+                $sql = "SELECT part_id FROM part WHERE part_name = '$name' AND company_name = '$manu' AND price = '$price' AND stock = '$stock' AND location = '$loca'";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                $part_id = $row['part_id'];
+
+                if ($type == CPU) {
+                   $clock = $_POST['cpu_clockspeed'];
+                   $cores = $_POST['cores'];
+                   $threads = $_POST['threads'];
+                   $sql = "INSERT INTO `cpu` VALUES ('$part_id', '$clock', '$cores', '$threads')";
+                   if ($conn->query($sql) === TRUE) {
+                        echo "New CPU created successfully";
+                   } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                   }      
+                } else if ($type == GPU) {
+                    $vram = $_POST['vram'];
+                    $clock = $_POST['gpu_clockspeed'];
+                    $sql = "INSERT INTO `gpu` VALUES ('$part_id', '$vram', '$clock')";
+                    if ($conn->query($sql) === TRUE) {
+                        echo "New GPU created successfully";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    } 
+                } else if ($type == PSU) {
+                    $wattage = $_POST['wattage'];
+                    $modularity = $_POST['modularity'];
+                    $rating = $_POST['rating'];
+                    $sql = "INSERT INTO `psu` VALUES ('$part_id', '$wattage', '$modularity', '$rating')";
+                    if ($conn->query($sql) === TRUE) {
+                        echo "New PSU created successfully";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }                   
+                } else if ($type == HDD) {
+                    $capacity = $_POST['capacity'];
+                    $rpm = $_POST['rpm'];
+                    $sql = "INSERT INTO `hdd` VALUES ('$part_id', '$capacity', '$rpm')";
+                    if ($conn->query($sql) === TRUE) {
+                        echo "New HDD created successfully";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }                   
+                } else if ($type == RAM) {
+                    $size = $_POST['size'];
+                    $speed = $_POST['speed'];
+                    $arch = $_POST['architecture'];
+                    $sql = "INSERT INTO `ram` VALUES ('$part_id', '$size', '$speed', '$arch')";
+                    if ($conn->query($sql) === TRUE) {
+                        echo "New RAM created successfully";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }                 
+                } else {
+                  //other, do nothing.
+                }
+                
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
         }
-        
-        
-        if (!empty($type)) {
-            $sql = "SELECT part_id FROM part WHERE part_name = '$name' AND company_name = '$manu' AND price = '$price' AND stock = '$stock' AND location = '$loca'";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
-            $part_id = $row['part_id'];
-            
-            if ($type == CPU) {
-               $clock = $_POST['cpu_clockspeed'];
-               $cores = $_POST['cores'];
-               $threads = $_POST['threads'];
-               $sql = "INSERT INTO `cpu` VALUES ('$part_id', '$clock', '$cores', '$threads')";
-               if ($conn->query($sql) === TRUE) {
-                    echo "New CPU created successfully";
-               } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
-               }      
-            } else if ($type = GPU) {
-                $vram = $_POST['vram'];
-                $clock = $_POST['gpu_clockspeed'];
-                $sql = "INSERT INTO `gpu` VALUES ('$part_id', '$vram')";
-               
-            } else if ($type = PSU) {
-                
-            } else if ($type = HDD) {
-                
-            } else if ($type = RAM) {
-                
-            } else {
-                
-            }
+
         $conn->close();
         }
-        ?>
         
-        <br> <a href="inventory.php">Back</a> <br>
+        echo "<br> Redirecting you back to the inventory page after 5 seconds.";
+        header('Refresh: 5; url=inventory.php');
+        ?>
+
+        <br> <a href="inventory.php">Back to Inventory</a> <br>
     </body>
 </html>

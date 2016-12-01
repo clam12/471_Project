@@ -117,7 +117,7 @@ and open the template in the editor.
         echo "</div>";
         
         echo "<div>";
-            echo "<input type=\"radio\" name=\"part_type\" id=\"other\">";
+            echo "<input type=\"radio\" name=\"part_type\" id=\"other\" value=\"other\">";
             echo "<label for=\"other\">Other</label>";
         echo "</div>";
         
