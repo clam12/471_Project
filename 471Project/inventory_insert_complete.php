@@ -68,7 +68,7 @@ and open the template in the editor.
             } else if ($type = GPU) {
                 $vram = $_POST['vram'];
                 $clock = $_POST['gpu_clockspeed'];
-                $sql = "INSERT INTO `gpu` VALUES ('$part_id', '$vram', '$       "
+                $sql = "INSERT INTO `gpu` VALUES ('$part_id', '$vram')";
                
             } else if ($type = PSU) {
                 
@@ -80,6 +80,7 @@ and open the template in the editor.
                 
             }
         $conn->close();
+        }
         ?>
         
         <br> <a href="inventory.php">Back</a> <br>
