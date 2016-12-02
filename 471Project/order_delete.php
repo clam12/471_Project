@@ -7,9 +7,9 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Orders</title>
+        <title></title>
     </head>
-    <h1> Orders </h1>
+    <h1>Remove An Order</h1>
     <body>
         <?php
         // Create connection
@@ -36,19 +36,15 @@ and open the template in the editor.
         } else {
             echo "0 results";
         }
+        
+        echo "<form action=\"order_delete_complete.php\" method=\"post\">";
+        echo "Which order would you like to remove? <input type =\"text\" name=\"order_id\"><br>";
+        echo "<input type=\"submit\" value=\"Remove\">";
+        echo "</form>";
+        
         $conn->close();
-        
         ?>
-        <br>
-        <form action="order_search.php" method="post">
-            <input type="text" name="keyword">
-            <input type="submit" value="Search">
-        </form>
-        <br>
         
-        <a href="order_add.php">Add new order</a> <br>
-        <a href="order_delete.php">Delete existing order</a> <br>
-        <a href="order_modify.php">Modify existing order</a> <br>
-        <a href="welcome.php">Back</a> <br>
+        <br> <a href="orders.php">Back</a> <br>
     </body>
 </html>
