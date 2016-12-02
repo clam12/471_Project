@@ -11,13 +11,12 @@ and open the template in the editor.
     </head>
     <h1>Inventory System</h1>
     <body>
-        <form action="welcome.php" method="post">
+        <form action="login_redirect.php" method="post">
             Employee ID: <input type="text" name="name"><br>
             Password: <input type ="password" name="password"><br>
             <input type="submit" value="Login">
         </form>
         <?php
-        // put your code here
         ?>
     </body>
 </html>
