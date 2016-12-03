@@ -58,16 +58,13 @@ and open the template in the editor.
         }
         echo "<form action=\"order_insert_part.php\" method=\"post\">";
         
-        $sql5 = "SELECT order_id FROM `order` WHERE time = '$time'";
+        $sql5 = "SELECT MAX(order_id) FROM `order`";
         $result5 = $conn->query($sql5);
-        #echo "Order ID <select name= 'orderID'>";
         $row5 = $result5->fetch_assoc();
         $current_order_no = $row5['order_id'];
-        #echo "<option value= '/$current_order_no' >" .$current_order_no. "</option><br>";
         
-        echo "Current Order ID is '$current_order_no'<br>";
+        echo "Your Order ID is '$current_order_no'<br>";
         
-        echo "Order ID: <input type =\"text\" name=\"number\"><br>";
         echo "Part ID: <input type =\"text\" name=\"part\"><br>";
         echo "Quantity: <input type =\"text\" name=\"quantity\"><br>";
         

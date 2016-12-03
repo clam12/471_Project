@@ -9,7 +9,6 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
     </head>
-    <h1>Order Modification</h1>
     <body>
         <?php
         // Create Connection
@@ -24,21 +23,9 @@ and open the template in the editor.
             die("Connection failed: " . $conn->connect_error);
         }
         
-        echo "<form action=\"order_modify_delete.php\" method=\"post\">";
-        $sql1 = "SELECT `name` FROM `customers` ";
-        $result1 = $conn->query($sql1);
-        echo "Customer Name: <select name= 'customerName'>";
+        $cusomterName =$_POST['customerName'];
         
-        while ($row1 = $result1->fetch_assoc()) {
-            $customerName = $row1['name'];
-            echo "<option value= '$customerName' >" .$customerName. "</option>";
-        }
         
-        echo "</select><br>";
-        echo "<br><input type=\"submit\" value=\"Remove Part\">";
-        echo "</form>";
         ?>
-        
-        <br><a href="orders.php">Return to Orders</a><br>
     </body>
 </html>
