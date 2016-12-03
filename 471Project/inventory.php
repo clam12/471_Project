@@ -83,7 +83,11 @@ and open the template in the editor.
         <h3>Insert</h3>       
         <form action="inventory_insert.php" method="post">
             <input type="submit" value="Insert New Part">
-        </form> 
+        </form>
+        <h4>Manufacturers</h4>
+        <form action = "manufacturer.php" method = "post">
+            <input type = "submit" value = "View">
+        </form>
         <br> <a href="welcome.php">Back</a> <br>
     </body>
 </html>
