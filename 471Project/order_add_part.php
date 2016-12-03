@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Add Part</title>
     </head>
     <h1>Which part would you like to add?</h1>
     <body>

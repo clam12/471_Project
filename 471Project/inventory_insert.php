@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Insert Part</title>
         <style>
             .reveal-if-active {
                 opacity: 0;

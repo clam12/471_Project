@@ -7,7 +7,8 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <meta http-equiv="Refresh" content="2; welcome.php"> 
+        <title>Add completed</title>
     </head>
     <body>
         <?php

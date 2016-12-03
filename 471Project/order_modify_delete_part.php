@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Remove Part</title>
     </head>
     <h1>Select part you wish to remove from order</h1>
     <body>
