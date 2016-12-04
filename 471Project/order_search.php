@@ -23,20 +23,23 @@ and open the template in the editor.
             die("Connection failed: " . $conn->connect_error);
         } 
         
-        $keyword = $_POST["keyword"];
-        $sql = "SELECT * FROM `order` WHERE order_id = $keyword OR customer_id = $keyword";
-        $result = $conn->query($sql);
+        echo "Who's order would you like to look up?";
         
-        if ($result->num_rows > 0) {
-            echo "<table><tr><th>Order Id</th><th>Customer ID</th><th>Employee ID</th><th>Date</th><th>Time</th></tr>";
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                echo "<tr><td>".$row["order_id"]."</td><td>".$row["customer_id"]."</td><td>".$row[employee_id]."</td><td>".$row[date]."</td><td>".$row[time]."</td></tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "0 results";
+        echo "<form action='order_search_result.php' method='post'>";
+        $sql = "SELECT `name` FROM `customers`";
+        $result = $conn->query($sql);
+        echo "Customer Name: <select name= 'name'>";
+        
+        while ($row = $result->fetch_assoc()) {
+            $customerName = $row['name'];
+            echo "<option value= '$customerName' >" .$customerName. "</option>";
         }
+        
+        echo "</select><br>";
+        
+        echo "<br><input type='submit' value='Search'>";
+        echo "</form>";
+        
         $conn->close();
         
         ?>

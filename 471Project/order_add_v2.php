@@ -64,9 +64,9 @@ and open the template in the editor.
             echo "<input type=\"radio\" name=\"customer\" id=\"GPU\">";
             echo "<label for=\"GPU\">New Customer</label>";
             echo "<div class=\"reveal-if-active\">";
-                echo "Name: <input type=\"text\" id=\"cpu_clockspeed\" name=\"customer_name\">  <br>";
-                echo "Email: <input type=\"text\" id=\"cores\" name=\"customer_email\"> <br>";
-                echo "Phone Number:  <input type=\"text\" id=\"threads\" name=\"customer_phone\"> <br>";
+                echo "Name: <input type=\"text\" id=\"customerName\" name=\"customer_name\">  <br>";
+                echo "Email: <input type=\"text\" id=\"customerEmail\" name=\"customer_email\"> <br>";
+                echo "Phone Number:  <input type=\"text\" customerPhone=\"threads\" name=\"customer_phone\"> <br>";
             echo "</div>";
         echo "</div>";
 
