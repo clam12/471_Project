@@ -37,9 +37,9 @@ and open the template in the editor.
             echo "0 results";
         }
         
-        echo "<form action=\"order_delete_complete.php\" method=\"post\">";
-        echo "Which order would you like to remove? <input type =\"text\" name=\"order_id\"><br>";
-        echo "<input type=\"submit\" value=\"Remove\">";
+        echo "<form action='order_delete_complete.php' method='post'>";
+        echo "Which order would you like to remove? <input type ='text' name='order_id'><br>";
+        echo "<input type='submit' value='Remove'>";
         echo "</form>";
         
         $conn->close();

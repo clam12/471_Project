@@ -24,7 +24,7 @@ and open the template in the editor.
             die("Connection failed: " . $conn->connect_error);
         }  
         
-        echo "<form action=\"order_add_part.php\" method=\"post\">";
+        echo "<form action='order_add_part.php' method='post'>";
         
         $sql1 = "SELECT `name` FROM `customers` ";
         $result1 = $conn->query($sql1);
@@ -48,7 +48,7 @@ and open the template in the editor.
         
         echo "</select><br>";
 
-        echo "<input type=\"submit\" value=\"Add Parts\">";
+        echo "<input type='submit' value='Add Parts'>";
         echo "</form>";
         
         $conn->close();

@@ -24,10 +24,10 @@ and open the template in the editor.
             die("Connection failed: " . $conn->connect_error);
         }
 
-        echo "<form action=\"employee_add_complete.php\" method=\"post\">";
-        echo "Name: <input type=\"text\" name=\"employee_name\"><br>";
-        echo "Phone Number: <input type = \"text\" name = \"phone_number\"><br>";
-        echo "<input type = \"submit\" value = \"Add\">";
+        echo "<form action='employee_add_complete.php' method='post'>";
+        echo "Name: <input type='text' name='employee_name'><br>";
+        echo "Phone Number: <input type = 'text' name = 'phone_number'><br>";
+        echo "<input type = 'submit' value = 'Add'>";
         echo "</form>";
         ?>
         <a href = "employee.php">Back</a>

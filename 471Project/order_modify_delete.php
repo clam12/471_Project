@@ -40,7 +40,7 @@ and open the template in the editor.
             }
         }
         
-        echo "<form action=\"order_modify_delete_part.php\" method=\"post\">";
+        echo "<form action='order_modify_delete_part.php' method='post'>";
         $sql3 = "SELECT order_id FROM `order` WHERE customer_id = '$customer_id'";
         $result3 = $conn->query($sql3);
         echo "Order ID: <select name= 'order_id'>";
@@ -52,7 +52,7 @@ and open the template in the editor.
         
         echo "</select><br>";
         
-        echo "<br><input type=\"submit\" value=\"Select Part from Order\">";
+        echo "<br><input type='submit' value='Select Part from Order'>";
         echo "</form>";
         
         $conn->close();

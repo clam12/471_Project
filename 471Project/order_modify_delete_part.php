@@ -25,7 +25,7 @@ and open the template in the editor.
         
         }
         
-        echo "<form action=\"order_modify_delete_complete.php\" method=\"post\">";
+        echo "<form action='order_modify_delete_complete.php' method='post'>";
         $orderID = $_POST['order_id'];
         
         $sql1 = "SELECT * FROM order_details WHERE order_id ='$orderID'";
@@ -64,9 +64,9 @@ and open the template in the editor.
         
         echo "</select><br>";
         
-        echo "Quantity: <input type =\"text\" name=\"quantity\"><br>";
+        echo "Quantity: <input type ='text' name='quantity'><br>";
         
-        echo "<input type=\"submit\" value=\"Submit Change\">";
+        echo "<input type='submit' value='Submit Change'>";
         echo "</form>";
         
         $conn->close();

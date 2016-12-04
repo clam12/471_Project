@@ -1,10 +1,4 @@
-﻿# Host: localhost  (Version 5.7.15-log)
-# Date: 2016-12-01 23:50:51
-# Generator: MySQL-Front 5.4  (Build 4.23)
-# Internet: http://www.mysqlfront.de/
-
-/*!40101 SET NAMES utf8 */;
-
+﻿
 #
 # Structure for table "cpu"
 #

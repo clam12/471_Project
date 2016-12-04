@@ -28,10 +28,10 @@ and open the template in the editor.
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            echo "<table><tr><th>part_id</th><th>part_name</th><th>company_name</th><th>price</th><th>stock</th><th>location</th></tr>";
+            echo "<table><tr><th>part_id</th><th>part_name</th><th>company_name</th><th>price</th><th>stock</th><th>location</th><th>part_type</th></tr>";
             // output data of each row
             while ($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . $row["part_id"] . "</td><td>" . $row["part_name"] . "</td><td>" . $row["company_name"] . "</td><td>" . $row["price"] . "</td><td>" . $row["stock"] . "</td><td>" . $row["location"] . "</td></tr>";
+                echo "<tr><td>" . $row["part_id"] . "</td><td>" . $row["part_name"] . "</td><td>" . $row["company_name"] . "</td><td>" . $row["price"] . "</td><td>" . $row["stock"] . "</td><td>" . $row["location"] . "</td><td>" . $row["part_type"] . "</td></tr>";
             }
             echo "</table>";
         } else {

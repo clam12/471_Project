@@ -36,7 +36,7 @@ and open the template in the editor.
         } else {
             echo "No Parts";
         }
-        echo "<form action=\"order_insert_part.php\" method=\"post\">";
+        echo "<form action='order_insert_part.php' method='post'>";
         
         $sql2 = "SELECT MAX(order_id) FROM `order`";
         $result2 = $conn->query($sql2);
@@ -45,10 +45,10 @@ and open the template in the editor.
         
         echo "Your Order ID is '$current_order_no'<br>";
         
-        echo "Part ID: <input type =\"text\" name=\"part\"><br>";
-        echo "Quantity: <input type =\"text\" name=\"quantity\"><br>";
+        echo "Part ID: <input type ='text' name='part'><br>";
+        echo "Quantity: <input type ='text' name='quantity'><br>";
         
-        echo "<input type=\"submit\" value=\"Add to order\"><br>";
+        echo "<input type='submit' value='Add to order'><br>";
         echo "<\form>";
         
         $conn->close();

@@ -31,15 +31,15 @@ and open the template in the editor.
         $loca = $_POST['location'];
         $type = $_POST['part_type'];
         
-        if (empty($name) || empty($price) || empty($stock) || empty($loca)) {
+        if (strlen($name) == 0 || strlen($price) == 0 || strlen($stock) == 0 || strlen($loca) == 0 || strlen($type) == 0 ) {
             echo "Error: One or more of the required fields are empty";
         } else {          
-            $sql = "INSERT INTO part (part_name, company_name, price, stock, location) VALUES ('$name','$manu','$price','$stock','$loca')";
+            $sql = "INSERT INTO part (part_name, company_name, price, stock, location, part_type) VALUES ('$name','$manu','$price','$stock','$loca','$type')";
 
             if ($conn->query($sql) === TRUE) {
-                echo "New part created successfully";
+                echo "New part created successfully <br>";
                 if (!empty($type)) {
-                $sql = "SELECT part_id FROM part WHERE part_name = '$name' AND company_name = '$manu' AND price = '$price' AND stock = '$stock' AND location = '$loca'";
+                $sql = "SELECT part_id FROM part WHERE part_name = '$name' AND company_name = '$manu' AND price = '$price' AND stock = '$stock' AND location = '$loca' AND part_type = '$part_type'";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 $part_id = $row['part_id'];
@@ -50,7 +50,7 @@ and open the template in the editor.
                    $threads = $_POST['threads'];
                    $sql = "INSERT INTO `cpu` VALUES ('$part_id', '$clock', '$cores', '$threads')";
                    if ($conn->query($sql) === TRUE) {
-                        echo "New CPU created successfully";
+                        echo "New CPU created successfully <br>";
                    } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                    }      
@@ -59,7 +59,7 @@ and open the template in the editor.
                     $clock = $_POST['gpu_clockspeed'];
                     $sql = "INSERT INTO `gpu` VALUES ('$part_id', '$vram', '$clock')";
                     if ($conn->query($sql) === TRUE) {
-                        echo "New GPU created successfully";
+                        echo "New GPU created successfully <br>";
                     } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     } 
@@ -69,7 +69,7 @@ and open the template in the editor.
                     $rating = $_POST['rating'];
                     $sql = "INSERT INTO `psu` VALUES ('$part_id', '$wattage', '$modularity', '$rating')";
                     if ($conn->query($sql) === TRUE) {
-                        echo "New PSU created successfully";
+                        echo "New PSU created successfully <br>";
                     } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     }                   
@@ -78,7 +78,7 @@ and open the template in the editor.
                     $rpm = $_POST['rpm'];
                     $sql = "INSERT INTO `hdd` VALUES ('$part_id', '$capacity', '$rpm')";
                     if ($conn->query($sql) === TRUE) {
-                        echo "New HDD created successfully";
+                        echo "New HDD created successfully <br>";
                     } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     }                   
@@ -88,7 +88,7 @@ and open the template in the editor.
                     $arch = $_POST['architecture'];
                     $sql = "INSERT INTO `ram` VALUES ('$part_id', '$size', '$speed', '$arch')";
                     if ($conn->query($sql) === TRUE) {
-                        echo "New RAM created successfully";
+                        echo "New RAM created successfully <br>";
                     } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
                     }                 
@@ -106,7 +106,7 @@ and open the template in the editor.
         
         echo "<br> Redirecting you back to the inventory page after 5 seconds.";
         //header('Refresh: 5; url=inventory.php');
-        echo "<meta http-equiv=\"Refresh\" content=\"5; inventory.php\">"; 
+        echo "<meta http-equiv='Refresh' content='5; inventory.php'>"; 
         ?>
 
         <br> <a href="inventory.php">Back to Inventory</a> <br>
