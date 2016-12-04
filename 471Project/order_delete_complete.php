@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Order Deleted</title>
+        <meta http-equiv="Refresh" content="2; orders.php"> 
     </head>
     <h1>Order Removed</h1>
     <body>
