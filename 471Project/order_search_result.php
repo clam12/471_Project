@@ -23,41 +23,37 @@ and open the template in the editor.
             die("Connection failed: " . $conn->connect_error);
         } 
         
-        $customerName = $_POST["name"];
-        
-        $sql1 = "SELECT * FROM `part`";
-        $result1 = $conn->query($sql1);
-        
-        if ($result1->num_rows > 0) {
-            echo "<table><tr><th>part_id</th><th>part_name</th><th>company_name</th><th>price</th><th>stock</th><th>location</th></tr>";
+        $keyword = $_POST["keyword"];
+        $sql = "SELECT * FROM (SELECT o.order_id, o.customer_id, o.employee_id, o.date, o.time, c.name, c.email, c.phone_number "
+                . "FROM `order` AS o JOIN `customers`as c ON o.customer_id = c.customer_id) AS a "
+                . "WHERE a.order_id LIKE '%$keyword%' OR a.name LIKE '%$keyword%' OR a.customer_id LIKE '%$keyword%' OR a.employee_id LIKE '%$keyword%'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            echo "<table><tr>"
+                    . "<th>Order ID</th>"
+                    . "<th>Customer ID</th>"
+                    . "<th>Employee ID</th>"
+                    . "<th>Date</th>"
+                    . "<th>Time</th>"
+                    . "<th>Name</th>"
+                    . "<th>Email</th>"
+                    . "<th>Phone Number</th>"
+                    . "</tr>";
             // output data of each row
-            while($row1 = $result1->fetch_assoc()) {
-                echo "<tr><td>".$row1["part_id"]."</td><td>".$row1["part_name"]."</td><td>".$row1["company_name"]."</td><td>".$row1["price"]."</td><td>".$row1["stock"]."</td><td>".$row1["location"]."</td></tr>";
+            while($row = $result->fetch_assoc()) {
+                echo"<tr>"
+                        . "<td>".$row["order_id"]."</td>"
+                        . "<td>".$row["customer_id"]."</td>"
+                        . "<td>".$row[employee_id]."</td>"
+                        . "<td>".$row[date]."</td>"
+                        . "<td>".$row[time]."</td>"
+                        . "<td>".$row[name]."</td>"
+                        . "<td>".$row[email]."</td>"
+                        . "<td>".$row[phone_number]."</td>"
+                        . "</tr>";
             }
-            echo "</table>";
-        } else {
-            echo "No Parts";
-        }
-        
-        $sql2 = "SELECT `customer_id` FROM `customers` WHERE name = '$customerName'";
-        $result2 = $conn->query($sql2);
-        $row2 = $result2->fetch_assoc();
-        $customerID = $row2['customer_id'];
-        
-        $sql3 = "SELECT `order_id` FROM `order` WHERE customer_id = '$customerID'";
-        $result3 = $conn->query($sql3);
-        $row3 = $result3->fetch_assoc();
-        $orderID = $row3['order_id'];
-        
-        $sql4 = "SELECT * FROM `order_details` WHERE order_id = '$orderID'";
-        $result4 = $conn->query($sql4);
-        if ($result4->num_rows > 0) {
-            echo "<table><tr><th>Order Id</th><th>Part ID</th><th>Quantity</th></tr>";
-            // output data of each row
-            while($row4 = $result4->fetch_assoc()) {
-                echo "<tr><td>".$row4["order_id"]."</td><td>".$row4["part_id"]."</td><td>".$row4["Quantity"]."</td></tr>";
-            }
-            echo "</table>";
+            echo"</table>";
         } else {
             echo "0 results";
         }

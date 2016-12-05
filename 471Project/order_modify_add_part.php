@@ -9,6 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
     </head>
+    <h1>Add Part to Current Order</h1>
     <body>
         <?php
         // Create Connection
@@ -26,7 +27,7 @@ and open the template in the editor.
         
         $orderID = $_POST['order_id'];
         
-        $sql1 = "SELECT * FROM part";
+        $sql1 = "SELECT * FROM PART as p WHERE p.part_id NOT IN (SELECT o.part_id FROM order_details as o WHERE order_id = $orderID)";
         $result1 = $conn->query($sql1);
         
         if ($result1->num_rows > 0) {
@@ -39,83 +40,22 @@ and open the template in the editor.
         } else {
             echo "No Parts";
         }
+    
+        echo "<form action='order_modify_add_complete.php' method='post'>";
+        echo "<br> Order ID: <input type='text' name='order_id' value = $orderID readonly>";
         
-        
-        $sql2 = "SELECT * FROM order_details WHERE order_id ='$orderID'";
-        $result2 = $conn->query($sql2);
-        
-        if ($result2->num_rows > 0) {
-            echo "<table><tr><th>order_id</th><th>part_id</th><th>quantity</th></tr>";
-            // output data of each row
-            while($row2 = $result2->fetch_assoc()) {
-                echo "<tr><td>".$row2["order_id"]."</td><td>".$row2["part_id"]."</td><td>".$row2["Quantity"]."</td></tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "No Orders";
-        }
-        
-        echo "<br>Add Quantity to Existing Part<br>";
-        
-        echo "<form action='order_modify_add_update.php' method='post'>";
-        
-        $sql3 = "SELECT `order_id` FROM `order_details` WHERE `order_id` = '$orderID'";
-        $result3 = $conn->query($sql3);
-        echo "Order ID: <select name='order_id'>";
-        while ($row3 = $result3->fetch_assoc()) {
-            $order_id = $row3['order_id'];
-            echo "<option value= '$order_id' >" .$order_id. "</option>";
-        }
-        
-        echo "</select><br>";
-        
-        
-        $sql4 = "SELECT `part_id` FROM `order_details` WHERE `order_id` = '$orderID'";
-        $result4 = $conn->query($sql4);
-        echo "Part ID: <select name='part_id'>";
-        
-        while ($row4 = $result4->fetch_assoc()) {
-            $partID = $row4['part_id'];
-            echo "<option value= '$partID' >" .$partID. "</option>";
-        }
-        
-        echo "</select><br>";
-        
-        echo "Quantity: <input type ='text' name='quantity'><br>";
-        
-        echo "<input type='submit' value='Submit Change'><br>";
-        echo "</form>";
-        
-        echo "<form action='order_modify_add_insert.php' method='post'>";
-                
-        echo "<br>Add Part to Current Order<br>";
-        
-        
-        $sql5 = "SELECT `order_id` FROM `order_details` WHERE `order_id` = '$orderID'";
-        $result5 = $conn->query($sql2);
-        echo "Order ID: <select name='order_id'>";
-        while ($row5 = $result5->fetch_assoc()) {
-            $order_id2 = $row5['order_id'];
-            echo "<option value= '$order_id2' >" .$order_id2. "</option>";
-        }
-        
-        
-        echo "</select><br>";
-        
-        $sql6 = "SELECT `part_id` FROM `part` ORDER BY part_id";
+        $sql6 = "SELECT * FROM PART as p WHERE p.part_id NOT IN (SELECT o.part_id FROM order_details as o WHERE order_id = $orderID) ORDER BY p.part_id";
         $result6 = $conn->query($sql6);
-        echo "Part ID: <select name='part_id'>";
-        
+        echo "<br>Part ID: <select name='part_id'>";      
         while ($row6 = $result6->fetch_assoc()) {
             $partID2 = $row6['part_id'];
             echo "<option value= '$partID2' >" .$partID2. "</option>";
         }
-        
         echo "</select><br>";
         
         echo "Quantity: <input type ='text' name='quantity'><br>";
         
-        echo "<input type='submit' value='Submit Change'><br>";
+        echo "<input type='submit' value='Add to Order'><br>";
         echo "</form>";
         
         

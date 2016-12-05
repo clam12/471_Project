@@ -9,7 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Modify Order</title>
     </head>
-    <h1>Order Modification</h1>
+    <h1>Modify Order</h1>
     <body>
         <?php
         // Create Connection
@@ -24,7 +24,21 @@ and open the template in the editor.
             die("Connection failed: " . $conn->connect_error);
         }
         
-        echo "<form action='order_modify_add.php' method='post'>";
+        $sql = "SELECT o.order_id, o.customer_id, o.employee_id, o.date, o.time, c.name, c.email, c.phone_number FROM `order` AS o JOIN `customers`as c ON o.customer_id = c.customer_id ORDER BY o.order_id";
+        $result = mysqli_query($conn, $sql);
+        if ($result->num_rows > 0) {
+            echo "<table><tr><th>Order ID</th><th>Customer ID</th><th>Employee ID</th><th>Date</th><th>Time</th><th>Name</th><th>Email</th><th>Phone Number</th></tr>";
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                echo"<tr><td>".$row["order_id"]."</td><td>".$row["customer_id"]."</td><td>".$row[employee_id]."</td><td>".$row[date]."</td><td>".$row[time]."</td><td>".$row[name]."</td><td>".$row[email]."</td><td>".$row[phone_number]."</td></tr>";
+            }
+            echo"</table>";
+        } else {
+            echo "0 results";
+        }
+        
+        echo "<br>";
+        echo "<form action='order_modify_select_order.php' method='post'>";
         $sql1 = "SELECT `name` FROM `customers` ";
         $result1 = $conn->query($sql1);
         echo "Customer Name: <select name= 'customerName'>";
@@ -35,21 +49,7 @@ and open the template in the editor.
         }
         
         echo "</select><br>";
-        echo "<br><input type='submit' value='Add Part'><br>";
-        echo "</form>";
-        
-        echo "<form action='order_modify_delete.php' method='post'>";
-        $sql1 = "SELECT `name` FROM `customers` ";
-        $result1 = $conn->query($sql1);
-        echo "<br>Customer Name: <select name= 'customerName'>";
-        
-        while ($row1 = $result1->fetch_assoc()) {
-            $customerName = $row1['name'];
-            echo "<option value= '$customerName' >" .$customerName. "</option>";
-        }
-        
-        echo "</select><br>";
-        echo "<br><input type='submit' value='Remove Part'>";
+        echo "<br><input type='submit' value='Next'>";
         echo "</form>";
         ?>
         

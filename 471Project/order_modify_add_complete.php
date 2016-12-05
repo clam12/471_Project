@@ -32,7 +32,7 @@ and open the template in the editor.
         $row1 = $result1->fetch_assoc();
         $stockQuantity = $row1['stock'];
         
-        if(($quantity > $stockQuantity) || Empty($quantity)) {
+        if(($quantity > $stockQuantity) || strlen($quantity) == 0) {
             echo "Invalid quantity given";
         } else if ($quantity <= $stockQuantity) {
             $sql1 = "INSERT INTO `order_details` (order_id, part_id, quantity) VALUES ('$orderID', '$partID', '$quantity')";
