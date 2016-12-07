@@ -39,7 +39,7 @@ and open the template in the editor.
             if ($conn->query($sql) === TRUE) {
                 echo "New part created successfully <br>";
                 if (!empty($type)) {
-                $sql = "SELECT part_id FROM part WHERE part_name = '$name' AND company_name = '$manu' AND price = '$price' AND stock = '$stock' AND location = '$loca' AND part_type = '$part_type'";
+                $sql = "SELECT part_id FROM part WHERE part_name = '$name' AND company_name = '$manu' AND price = '$price' AND stock = '$stock' AND location = '$loca' AND part_type = '$type'";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 $part_id = $row['part_id'];

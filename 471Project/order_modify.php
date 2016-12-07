@@ -38,18 +38,18 @@ and open the template in the editor.
         }
         
         echo "<br>";
-        echo "<form action='order_modify_select_order.php' method='post'>";
-        $sql1 = "SELECT `name` FROM `customers` ";
-        $result1 = $conn->query($sql1);
-        echo "Customer Name: <select name= 'customerName'>";
+        echo "<form action='order_modify_part.php' method='post'>";
+        $sql2 = "SELECT order_id FROM `order` ORDER BY order_id";
+        $result2 = $conn->query($sql2);
+        echo "Order ID: <select name= 'order_id'>";
         
-        while ($row1 = $result1->fetch_assoc()) {
-            $customerName = $row1['name'];
-            echo "<option value= '$customerName' >" .$customerName. "</option>";
+        while ($row2 = $result2->fetch_assoc()) {
+            $orderID = $row2['order_id'];
+            echo "<option value= '$orderID' >" .$orderID. "</option>";
         }
         
-        echo "</select><br>";
-        echo "<br><input type='submit' value='Next'>";
+        echo "</select>";
+        echo "<br><input type='submit' value='Select'>";
         echo "</form>";
         ?>
         
