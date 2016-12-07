@@ -1,5 +1,4 @@
-﻿
-#
+﻿#
 # Structure for table "customers"
 #
 
