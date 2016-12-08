@@ -82,7 +82,7 @@ and open the template in the editor.
         ?>
 
         
-        <a href="order_add_V2.php">Add new order</a> <br>
+        <a href="order_add.php">Add new order</a> <br>
         <a href="order_delete.php">Delete existing order</a> <br>
         <a href="order_modify.php">Modify existing order</a> <br>
         <a href="welcome.php">Back</a> <br>

@@ -11,6 +11,8 @@ and open the template in the editor.
     </head>
     <body>
         <?php
+        session_start();
+        $order_number = $_SESSION["order_number"];
         // Create connection
         $servername="localhost";
         $username="root";
@@ -22,11 +24,6 @@ and open the template in the editor.
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        
-        $sql = "SELECT MAX(order_id) FROM `order`";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $order_no = $row['order_id'];
         
         $part_no = $_POST['part'];
         $quantity = $_POST['quantity'];
@@ -42,7 +39,7 @@ and open the template in the editor.
             if($stock < $quantity) {
                 echo "Not Enough Stock Available<br>";
             } else {
-                $sql = "INSERT INTO order_details (order_id, part_id, quantity) VALUES ('$order_no', '$part_no', '$quantity')";
+                $sql = "INSERT INTO order_details (order_id, part_id, quantity) VALUES ('$order_number', '$part_no', '$quantity')";
                 $conn->query($sql);
                 $newStock = $stock - $quantity;
                 $sql1 = "UPDATE part SET stock= '$newStock' WHERE part_id = '$part_no'";

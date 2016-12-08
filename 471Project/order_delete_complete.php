@@ -29,7 +29,6 @@ and open the template in the editor.
         $sql = "SELECT * FROM order_details AS o WHERE o.order_id= '$order_id'";
         $result = $conn->query($sql);
         if($result->num_rows == 0) {
-            echo "one";
             if (empty($order_id)) {
                 echo "Error: order ID is empty";
             } else {
@@ -41,17 +40,13 @@ and open the template in the editor.
             
             while($row = $result->fetch_assoc()) {
                 $part_id = $row['part_id'];
-                echo $part_id;
-                
                 $quantity = $row['Quantity'];
-                echo $quantity;
                 
                 $sql1 = "SELECT `stock` FROM `part` WHERE part_id = '$part_id'";
                 $result1 = $conn->query($sql1);
                 $row1 = $result1->fetch_assoc();
                 $stock = $row1['stock'];
                 
-                echo $stock;
                 $newStock = $stock + $quantity;
                 
                 $sql4 = "UPDATE `part` SET `stock` = '$newStock' WHERE part_id = '$part_id'";

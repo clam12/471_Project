@@ -12,6 +12,7 @@ and open the template in the editor.
     <h1>Which Part Would You Like To Add?</h1>
     <body>
         <?php
+        session_start();
         // Create connection
         $servername="localhost";
         $username="root";
@@ -36,20 +37,15 @@ and open the template in the editor.
         } else {
             echo "No Parts";
         }
-        echo "<form action='order_insert_part.php' method='post'>";
+        echo "<form action=\"order_insert_part.php\" method=\"post\">";
         
-        $sql2 = "SELECT MAX(order_id) FROM `order`";
-        $result2 = $conn->query($sql2);
-        $row2 = $result2->fetch_assoc();
-        $current_order_no = $row2['order_id'];
+        $current_order_no = $_SESSION["order_number"];
         
-        echo "Your Order ID is '$current_order_no'<br>";
+        echo "Part ID: <input type =\"text\" name=\"part\"><br>";
+        echo "Quantity: <input type =\"text\" name=\"quantity\"><br>";
         
-        echo "Part ID: <input type ='text' name='part'><br>";
-        echo "Quantity: <input type ='text' name='quantity'><br>";
-        
-        echo "<input type='submit' value='Add to order'><br>";
-        echo "<\form>";
+        echo "<input type=\"submit\" value=\"Add to order\"><br>";
+        echo "</form>";
         
         $conn->close();
         
